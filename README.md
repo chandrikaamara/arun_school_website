@@ -42,9 +42,21 @@ The application is powered by **Firebase** for authentication, real-time databas
 
 ---
 
-## **Installation and Setup**
+## **Structure**
 
-### **Prerequisites**
-- You need a **Firebase account**. Sign up at: [Firebase Console](https://console.firebase.google.com/).
-- Install **Node.js**: [Download Node.js](https://nodejs.org/), which includes npm (Node Package Manager).
+/school-management
+│
+├── /public
+│   ├── index.html                # Homepage
+│   ├── dashboard.html            # User-specific dashboard page
+│   ├── login.html                # Login page
+│   ├── register.html             # Registration page
+│   ├── attendance.html           # Attendance management page
+│   ├── marks.html                # Marks management page
+│   ├── styles.css                # Global CSS
+│   └── app.js                    # Frontend JavaScript
+│
+├── firebase.json                 # Firebase hosting configuration
+└── .firebaserc                   # Firebase project configuration
+
 
