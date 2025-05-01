@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="student-dashboard.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome, <span id="student-name">Student</span></h1>
+    <p>ID: <span id="student-id"></span> | Class: <span id="student-class"></span></p>
+
+    <hr />
+
+    <h2>Your Attendance Records</h2>
+    <table id="attendance-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Subject</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <h2>Your Marks</h2>
+    <table id="marks-table">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Marks</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+</body>
+</html>

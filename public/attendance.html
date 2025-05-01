@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Management</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Add Students to Classes Section -->
+  <section id="add-students">
+    <h2>Add Students to Class</h2>
+    <form id="add-student-form">
+      <label for="class-name">Class Name:</label>
+      <input type="text" id="class-name" required placeholder="Enter class name">
+
+      <label for="student-name">Student Name:</label>
+      <input type="text" id="student-name" required placeholder="Enter student name">
+
+      <label for="student-email">Student Email:</label>
+      <input type="email" id="student-email" required placeholder="Enter student email">
+
+      <button type="submit">Add Student</button>
+    </form>
+    <div id="add-student-status"></div>
+  </section>
+
+  <!-- Take Daily Attendance Section -->
+  <section id="daily-attendance">
+    <h2>Mark Daily Attendance</h2>
+    
+    <form id="attendance-form">
+      <label for="class-select">Select Class:</label>
+      <select id="class-select" required>
+        <option value="" disabled selected>Select class</option>
+        <!-- Classes will be populated dynamically -->
+      </select>
+
+      <div id="student-list">
+        <!-- Student list for the selected class will be dynamically populated here -->
+      </div>
+
+      <button type="submit">Submit Attendance</button>
+    </form>
+    <div id="attendance-status"></div>
+  </section>
+
+  <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
