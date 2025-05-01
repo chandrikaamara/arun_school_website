@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organizer Dashboard - Arun School</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="attendance.html">Manage Attendance</a></li>
+        <li><a href="marks.html">Manage Marks</a></li>
+        <li><a href="students.html">Manage Students</a></li>
+        <li><a href="faculty.html">Manage Faculty</a></li>
+        <li><a href="index.html" onclick="logout()">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="welcome-section">
+      <h1>Welcome, Organizer!</h1>
+      <p>As an Organizer, you have full access to manage the school's attendance, marks, students, and faculty.</p>
+    </section>
+
+    <section class="dashboard-actions">
+      <div class="card">
+        <h3>Manage Attendance</h3>
+        <p>Click here to view and manage student attendance.</p>
+        <a href="attendance.html" class="btn">Manage Attendance</a>
+      </div>
+
+      <div class="card">
+        <h3>Manage Marks</h3>
+        <p>Click here to view and manage students' marks.</p>
+        <a href="marks.html" class="btn">Manage Marks</a>
+      </div>
+
+      <div class="card">
+        <h3>Manage Students</h3>
+        <p>Click here to manage student records, add or remove students.</p>
+        <a href="students.html" class="btn">Manage Students</a>
+      </div>
+
+      <div class="card">
+        <h3>Manage Faculty</h3>
+        <p>Click here to manage faculty information and assignments.</p>
+        <a href="faculty.html" class="btn">Manage Faculty</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Arun School</p>
+  </footer>
+
+  <script>
+    // Logout function to clear authentication
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        window.location.href = 'index.html';  // Redirect to home after logout
+      }).catch((error) => {
+        console.error("Error logging out: ", error);
+      });
+    }
+  </script>
+</body>
+</html>
