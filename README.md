@@ -40,23 +40,4 @@ The application is powered by **Firebase** for authentication, real-time databas
 - **Database**: Firebase Firestore (NoSQL)
 - **Hosting**: Firebase Hosting
 
----
-
-## **Structure**
-
-/school-management
-│
-├── /public
-│   ├── index.html                # Homepage
-│   ├── dashboard.html            # User-specific dashboard page
-│   ├── login.html                # Login page
-│   ├── register.html             # Registration page
-│   ├── attendance.html           # Attendance management page
-│   ├── marks.html                # Marks management page
-│   ├── styles.css                # Global CSS
-│   └── app.js                    # Frontend JavaScript
-│
-├── firebase.json                 # Firebase hosting configuration
-└── .firebaserc                   # Firebase project configuration
-
 
