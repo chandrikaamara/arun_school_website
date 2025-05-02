@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Welcome - Arunodaya School Management</title>
-  
+
   <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
@@ -116,13 +116,14 @@
     function selectRole(role) {
       localStorage.setItem('selectedRole', role);
 
-      // Redirect based on the role selected
-      if (role === 'Others') {
-        window.location.href = 'others_dashboard.html';  // Redirect to 'Others' dashboard
-      } else if(role === student){
-        window.location.href = 'login.html';  // Redirect to login page for Student
+      if (role === 'Student') {
+        // Redirect to Student Login Page (Student will login using name, roll number, class)
+        window.location.href = 'student-login.html';
+      } else if (role === 'Others') {
+        window.location.href = 'others_dashboard.html';
       } else {
-        window.location.href = 'register.html';  // Redirect to registration page for Organizer, Faculty, and Student
+        // Redirect to Registration page for Organizer, Faculty
+        window.location.href = 'register.html'; 
       }
     }
   </script>
