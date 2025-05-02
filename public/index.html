@@ -12,31 +12,75 @@
       color: white;
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       padding: 2rem;
     }
+
     h1 {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
     }
-    .role-btn {
-      margin: 1rem;
-      width: 250px;
-      font-size: 1.2rem;
-      padding: 1rem;
+
+    .marquee-text {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 0.5rem;
+      margin-bottom: 2rem;
       border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    .lead {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .role-btn {
+      margin: 0.5rem;
+      width: 260px;
+      font-size: 1.1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      border: none;
+      background-color: #B5A8D5;
+      color: #211C84;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .role-btn:hover {
+      background-color: #7A73D1;
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 576px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .role-btn {
+        width: 90%;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>WELCOME TO ARUNODAYA SCHOOL MANAGEMENT SYSTEM</h1>
-  <marquee>L.K.G to 10th(Both E.M and T.M available here) Regd. by the Govt. of Andhra Pradesh,Korasavada-Kaguvada.</marquee>
-  <p class="lead">Who are you?</p>
-  <div class="d-flex flex-wrap justify-content-center">
-    <button class="btn btn-light role-btn" onclick="selectRole('Organizer')">I'm an Organizer</button>
-    <button class="btn btn-light role-btn" onclick="selectRole('Faculty')">I'm a Faculty</button>
-    <button class="btn btn-light role-btn" onclick="selectRole('Student')">I'm a Student</button>
-    <button class="btn btn-light role-btn" onclick="selectRole('Others')">I'm just exploring</button>
+  <div>
+    <h1>Welcome to Arunodaya School Management System</h1>
+    <div class="marquee-text">
+      <marquee>L.K.G to 10th (Both E.M and T.M available) — Regd. by Govt. of Andhra Pradesh, Korasavada-Kaguvada.</marquee>
+    </div>
+    <p class="lead">Who are you?</p>
+    <div class="d-flex flex-wrap justify-content-center">
+      <button class="role-btn" onclick="selectRole('Organizer')">I'm an Organizer</button>
+      <button class="role-btn" onclick="selectRole('Faculty')">I'm a Faculty</button>
+      <button class="role-btn" onclick="selectRole('Student')">I'm a Student</button>
+      <button class="role-btn" onclick="selectRole('Others')">I'm just exploring</button>
+    </div>
   </div>
 
   <script>
