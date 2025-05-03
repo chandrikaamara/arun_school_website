@@ -62,11 +62,11 @@ function loginUser(email, password) {
         const role = userData.role;
 
         if (role === "Organizer") {
-          window.location.href = "organizer_dashboard.html";
+          window.location.href = "organizer-dashboard.html";
         } else if (role === "Faculty") {
-          window.location.href = "faculty_dashboard.html";
+          window.location.href = "faculty-dashboard.html";
         } else if (role === "Student") {
-          window.location.href = "student_dashboard.html";
+          window.location.href = "student-dashboard.html";
         } else {
           alert("Unknown role! Contact admin.");
         }
