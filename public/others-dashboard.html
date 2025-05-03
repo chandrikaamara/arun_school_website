@@ -31,12 +31,64 @@
       display: flex;
       align-items: center;
       gap: 5px;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #ffc107 !important;
+    }
+    .btn-outline-light:hover {
+      background-color: white;
+      color: #0B2F9F;
+    }
+    .btn-light:hover {
+      background-color: #ffc107;
+      color: black;
     }
     .hero {
       background: linear-gradient(to right, #0815a6, #264dc4);
       color: white;
       padding: 4rem 2rem;
       text-align: center;
+    }
+    .text-main span {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #fff;
+      margin: 0 10px;
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeInUp 0.5s forwards;
+    }
+    .text-expanded .heading span {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #fff;
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeInLetter 0.05s forwards;
+    }
+    .text-expanded .tagline span {
+      font-size: 1.25rem;
+      color: #f0f0f0;
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      margin-right: 10px;
+      animation: fadeInLetter 0.2s forwards;
+    }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInLetter {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     section {
       padding: 3rem 2rem;
@@ -62,11 +114,11 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-5 me-auto mb-2 mb-lg-0">
-          <li class="nav-item  me-5"><a class="nav-link" href="#about"><i class="fas fa-school"></i> About</a></li>
-          <li class="nav-item  me-5"><a class="nav-link" href="#faculty"><i class="fas fa-chalkboard-teacher"></i> Faculty</a></li>
-          <li class="nav-item  me-5"><a class="nav-link" href="#founder"><i class="fas fa-user-tie"></i> Founder</a></li>
-          <li class="nav-item  me-5"><a class="nav-link" href="#events"><i class="fas fa-calendar-alt"></i> Events/Blogs</a></li>
-          <li class="nav-item  me-5"><a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+          <li class="nav-item me-5"><a class="nav-link" href="#about"><i class="fas fa-school"></i> About</a></li>
+          <li class="nav-item me-5"><a class="nav-link" href="#founder"><i class="fas fa-user-tie"></i> Founder</a></li>
+          <li class="nav-item me-5"><a class="nav-link" href="#faculty"><i class="fas fa-chalkboard-teacher"></i> Faculty</a></li>
+          <li class="nav-item me-5"><a class="nav-link" href="#events"><i class="fas fa-calendar-alt"></i> Events/Blogs</a></li>
+          <li class="nav-item me-5"><a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
         </ul>
         <div>
           <a href="login.html" class="btn btn-outline-light me-2">Login</a>
@@ -76,10 +128,12 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero Section with Intro Animation -->
   <div class="hero">
-    <h1>Welcome to Arunodaya School</h1>
-    <p>Empowering Education for a Brighter Future</p>
+    <div class="container text-center">
+      <div class="text-main" id="mainText"></div>
+      <div class="text-expanded" id="expandedText" style="margin-top: 20px;"></div>
+    </div>
   </div>
 
   <!-- About Section -->
@@ -90,19 +144,19 @@
     </div>
   </section>
 
-  <!-- Faculty Section -->
-  <section id="faculty" style="background-color: #f9f9f9;">
-    <div class="container">
-      <h2>Our Faculty</h2>
-      <p>Our faculty consists of experienced educators dedicated to mentoring and inspiring students across various disciplines.</p>
-    </div>
-  </section>
-
   <!-- Founder Section -->
   <section id="founder">
     <div class="container">
       <h2>Meet the Founder</h2>
       <p>Founded by visionary educator Mr. Arunodaya Rao, our institution thrives on values of excellence, integrity, and innovation in education.</p>
+    </div>
+  </section>
+
+  <!-- Faculty Section -->
+  <section id="faculty" style="background-color: #f9f9f9;">
+    <div class="container">
+      <h2>Our Faculty</h2>
+      <p>Our faculty consists of experienced educators dedicated to mentoring and inspiring students across various disciplines.</p>
     </div>
   </section>
 
@@ -121,7 +175,7 @@
       <p><i class="fas fa-map-marker-alt"></i> Arunodaya School, Main Road, Hyderabad, India</p>
       <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
       <p><i class="fas fa-envelope"></i> contact@arunodaya.edu.in</p>
-      <p><i class="fas fa-globe"></i> <a href="https://www.google.co.in/maps/place/Arunodaya+school/@18.7280795,84.0585001,18.74z/data=!4m14!1m7!3m6!1s0x3a3cf76116ecf855:0xf4e92e1c4bef326!2sArunodaya+school!8m2!3d18.7282681!4d84.0597164!16s%2Fg%2F11ng76pmq4!3m5!1s0x3a3cf76116ecf855:0xf4e92e1c4bef326!8m2!3d18.7282681!4d84.0597164!16s%2Fg%2F11ng76pmq4?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank">View on Map</a></p>
+      <p><i class="fas fa-globe"></i> <a href="https://www.google.co.in/maps/place/Arunodaya+school/" target="_blank">View on Map</a></p>
     </div>
   </section>
 
@@ -131,5 +185,65 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const mainText = document.getElementById('mainText');
+    const expandedText = document.getElementById('expandedText');
+
+    const word = "ANDS";
+    word.split('').forEach((char, i) => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.style.animationDelay = `${i * 0.3}s`;
+      mainText.appendChild(span);
+    });
+
+    setTimeout(() => {
+      mainText.style.display = 'none';
+
+      const heading = document.createElement('div');
+      heading.className = 'heading';
+      const headingText = "ARUNODAYA";
+      headingText.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.style.animation = `fadeInLetter 0.05s forwards`;
+        span.style.animationDelay = `${i * 0.05}s`;
+        heading.appendChild(span);
+      });
+
+      // Add a gap (using a span element with margin)
+      const gap = document.createElement('span');
+      gap.textContent = ' ';
+      gap.style.display = 'inline-block';
+      gap.style.marginLeft = '20px'; // Adjust this value to control the gap
+      heading.appendChild(gap);
+
+      // Display "SCHOOL" after the gap
+      const schoolText = "SCHOOL";
+      schoolText.split('').forEach((char, i) => {
+        const span = document.createElement('span');
+        span.textContent = char;
+        span.style.animation = `fadeInLetter 0.05s forwards`;
+        span.style.animationDelay = `${(headingText.length + 1 + i) * 0.05}s`; // Adjust delay based on previous text
+        heading.appendChild(span);
+      });
+
+      expandedText.appendChild(heading);
+
+      const tagline = "where most of the students Achieved Number of their Dreamsand conquered the heights of success.";
+      const taglineContainer = document.createElement('div');
+      taglineContainer.className = 'tagline';
+
+      tagline.split(' ').forEach((word, i) => {
+        const span = document.createElement('span');
+        span.textContent = word;
+        span.style.animation = `fadeInLetter 0.2s forwards`;
+        span.style.animationDelay = `${i * 0.2}s`;
+        taglineContainer.appendChild(span);
+      });
+
+      expandedText.appendChild(taglineContainer);
+    }, 5000);
+  </script>
 </body>
 </html>
