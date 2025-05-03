@@ -5,109 +5,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register - Arunodaya School Management</title>
 
-  <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  
+
   <style>
     body {
-      background: linear-gradient(to right, #0815a6, #264dc4);
-      color: white;
+      background: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.68), rgba(11, 71, 192, 0.705)),
+        url('backgroundreggg.jpg') no-repeat center center fixed;
+      background-size: cover;
       font-family: 'Segoe UI', sans-serif;
-      text-align: center;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
+      align-items: center;
       padding: 2rem;
+      color: #333;
+    }    
+
+    .form-wrapper {
+      background-color: rgba(38, 105, 206, 0.751);
+      padding: 2rem;
+      border-radius: 15px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(6px);
     }
 
     .logo {
-      width: 160px;
-      height: auto;
+      width: 140px;
       margin: 0 auto 1rem;
       display: block;
     }
 
-    h1 {
-      font-size: 2.5rem;
+    .form-title {
+      font-size: 2rem;
       font-weight: 700;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
     }
 
-    .form-container {
-      max-width: 500px;
-      margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 10px;
+    .input-group-text {
+      background-color: #e0eafc;
+      border: 1px solid #c8dafc;
+      color: #007BFF;
     }
 
-    .form-container input {
-      width: 100%;
-      padding: 1rem;
-      margin: 0.5rem 0;
+    .form-control, .form-select {
       border-radius: 10px;
+      border: 1px solid #ced4da;
+      background-color: #f8f9fa;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: #007BFF;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .form-control::placeholder {
+      color: #888;
+    }
+
+    .btn-primary {
+      background-color: #0727c5;
       border: none;
-    }
-
-    .form-container button {
-      width: 100%;
-      padding: 1rem;
+      padding: 0.75rem;
       border-radius: 10px;
-      background-color: #0B2F9F;
-      color: white;
       font-weight: 600;
-      border: none;
-      margin-top: 1rem;
     }
 
-    .form-container button:hover {
-      background-color: #161D6F;
+    .btn-primary:hover {
+      background-color: #ffffff;
+      color: #0727c5;
     }
 
-    .form-container select {
-      width: 100%;
-      padding: 1rem;
-      margin: 0.5rem 0;
-      border-radius: 10px;
-      border: none;
-      font-size: 1rem;
+    a {
+      color: #00ff73;
+      text-decoration: none;
+    }
+
+    @media (max-width: 576px) {
+      .form-title {
+        font-size: 1.6rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div>
+
+  <div class="form-wrapper">
     <img src="Pi7_logo.png" alt="School Logo" class="logo" />
-    <h1>Register - Arunodaya School Management</h1>
-    <div class="form-container">
-      <form id="registrationForm">
-        <!-- Name Field -->
-        <input type="text" id="name" placeholder="Full Name" required />
+    <h2 class="form-title text-center">Arunodaya School</h2>
 
-        <!-- Email Field -->
-        <input type="email" id="email" placeholder="Email Address" required />
+    <form id="registrationForm">
+      <!-- Name -->
+      <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-user"></i></span>
+        <input type="text" class="form-control" id="name" placeholder="Full Name" required>
+      </div>
 
-        <!-- Password Field -->
-        <input type="password" id="password" placeholder="Password" required />
+      <!-- Email -->
+      <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+        <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+      </div>
 
-        <!-- Role Selection -->
-        <select id="role" required>
+      <!-- Password -->
+      <div class="input-group mb-3">
+        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+        <input type="password" class="form-control" id="password" placeholder="Password" required>
+        <span class="input-group-text" onclick="togglePassword()" style="cursor: pointer;">
+          <i class="fas fa-eye" id="togglePasswordIcon"></i>
+        </span>
+      </div>
+
+      <!-- Role -->
+      <div class="input-group mb-4">
+        <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+        <select class="form-select" id="role" required>
           <option value="" disabled selected>Select Your Role</option>
           <option value="Organizer">Organizer</option>
           <option value="Faculty">Faculty</option>
-          <option value="Student">Student</option>
         </select>
+      </div>
 
-        <button type="submit">Register</button>
-        <p>Already have an account? <a href="login.html">Login here</a></p>
-      </form>
-    </div>
+      <button type="submit" class="btn btn-primary w-100 mb-3">
+        <i class="fas fa-user-plus me-2"></i> Register
+      </button>
+
+      <p class="text-center text-light">Already have an account? <a href="login.html">Login here</a></p>
+    </form>
   </div>
 
-  <!-- Firebase SDK -->
+  <!-- Firebase + Custom Script -->
   <script type="module" src="app.js"></script>
   <script>
     const registrationForm = document.getElementById("registrationForm");
@@ -119,9 +153,23 @@
       const password = document.getElementById("password").value;
       const role = document.getElementById("role").value;
 
-      // Call the registerUser function from app.js
       registerUser(name, email, password, role);
     });
+
+    function togglePassword() {
+      const passwordField = document.getElementById("password");
+      const toggleIcon = document.getElementById("togglePasswordIcon");
+
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleIcon.classList.remove("fa-eye");
+        toggleIcon.classList.add("fa-eye-slash");
+      } else {
+        passwordField.type = "password";
+        toggleIcon.classList.remove("fa-eye-slash");
+        toggleIcon.classList.add("fa-eye");
+      }
+    }
   </script>
 </body>
 </html>
