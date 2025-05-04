@@ -50,6 +50,32 @@
       padding: 4rem 2rem;
       text-align: center;
     }
+    .custom-card {
+      border: 1px solid #0B2F9F;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .custom-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(11, 47, 159, 0.2);
+    }
+
+    .custom-card .card-title {
+      color: #0B2F9F;
+      font-weight: 600;
+    }
+
+    .custom-btn {
+      background-color: #0B2F9F;
+      color: white;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .custom-btn:hover {
+      background-color: #ffc107;
+      color: #0B2F9F;
+    }
+
     .text-main span {
       font-size: 3rem;
       font-weight: bold;
@@ -144,36 +170,112 @@
     </div>
   </section>
 
+  
   <!-- Founder Section -->
-  <section id="founder">
-    <div class="container">
-      <h2>Meet the Founder</h2>
-      <p>Founded by visionary educator Mr. Arunodaya Rao, our institution thrives on values of excellence, integrity, and innovation in education.</p>
+<section id="founder">
+  <div class="container">
+    <h2>Meet the Founder</h2>
+    <div class="row align-items-start">
+      <div class="col-md-3">
+        <img src="founder.jpg" alt="Founder Photo" class="img-fluid rounded" style="max-width: 100%; height: auto;" />
+      </div>
+      <div class="col-md-9">
+        <p>
+          <strong>Mr. Gedela Vijay Kumar Garu</strong>, Visionary Educator & Founder of Arunodaya School.
+          <br><br>
+          With a passion for nurturing young minds and a commitment to academic excellence, Mr. Kumar laid the foundation of Arunodaya School in [Year] with a singular vision: to create a learning environment that inspires curiosity, cultivates character, and empowers students to become global citizens.
+          <br><br>
+          With over [X] years of experience in the field of education, Mr. Kumar's philosophy combines traditional values with modern educational practices. His leadership and dedication continue to shape the school's mission of holistic development, inclusivity, and lifelong learning.
+        </p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Faculty Section -->
-  <section id="faculty" style="background-color: #f9f9f9;">
-    <div class="container">
-      <h2>Our Faculty</h2>
-      <p>Our faculty consists of experienced educators dedicated to mentoring and inspiring students across various disciplines.</p>
-    </div>
-  </section>
 
-  <!-- Events/Blogs Section -->
-  <section id="events" style="background-color: #f9f9f9;">
-    <div class="container">
-      <h2>Events & Blogs</h2>
-      <p>Stay updated with the latest happenings, student activities, and insights from our educators through our events and blogs.</p>
+ <!-- Faculty Section -->
+<section id="faculty" style="background-color: #f9f9f9;">
+  <div class="container">
+    <h2 class="mb-4">Our Faculty</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 custom-card">
+          <img src="faculty1.jpg" class="card-img-top" alt="Faculty 1">
+          <div class="card-body">
+            <h5 class="card-title">Dr. Anjali Sharma</h5>
+            <p class="card-text">Head of Science Department. With over 15 years of experience, she specializes in inspiring curiosity in students through hands-on learning.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 custom-card">
+          <img src="faculty2.jpg" class="card-img-top" alt="Faculty 2">
+          <div class="card-body">
+            <h5 class="card-title">Mr. Rajeev Menon</h5>
+            <p class="card-text">Mathematics Faculty. Known for making math fun and accessible, with innovative teaching methods and personal mentorship.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 custom-card">
+          <img src="faculty3.jpg" class="card-img-top" alt="Faculty 3">
+          <div class="card-body">
+            <h5 class="card-title">Ms. Sneha Reddy</h5>
+            <p class="card-text">English and Literature Faculty. Passionate about language and literature with a flair for storytelling and debate coaching.</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Events/Blogs Section -->
+<section id="events" style="background-color: #f9f9f9;">
+  <div class="container">
+    <h2 class="mb-4">Events & Blogs</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 custom-card">
+          <img src="event1.jpg" class="card-img-top" alt="Science Fair">
+          <div class="card-body">
+            <h5 class="card-title">Annual Science Fair 2025</h5>
+            <p class="card-text">Students showcased incredible innovations and experiments under the guidance of our faculty.</p>
+            <a href="#" class="btn btn-primary btn-sm">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 custom-card">
+          <img src="event2.jpg" class="card-img-top" alt="Literary Fest">
+          <div class="card-body">
+            <h5 class="card-title">Literary Fest Highlights</h5>
+            <p class="card-text">Debates, poetry slams, and story-writing competitions lit up the campus last month.</p>
+            <a href="#" class="btn btn-primary btn-sm">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 custom-card">
+          <img src="event3.jpg" class="card-img-top" alt="Sports Day">
+          <div class="card-body">
+            <h5 class="card-title">Inter-School Sports Meet</h5>
+            <p class="card-text">A thrilling display of teamwork, athleticism, and school spirit at the regional sports meet.</p>
+            <a href="#" class="btn btn-primary btn-sm">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
   <!-- Contact Us Section -->
   <section id="contact">
     <div class="container">
       <h2>Contact Us</h2>
-      <p><i class="fas fa-map-marker-alt"></i> Arunodaya School, Main Road, Hyderabad, India</p>
-      <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+      <p><i class="fas fa-map-marker-alt"></i> Arunodaya School, Main Road, Korasavada,Pathapatnam,Srikakulam,AP, India</p>
+      <p><i class="fas fa-phone-alt"></i> +91 9951619369,+91 9441348360</p>
       <p><i class="fas fa-envelope"></i> contact@arunodaya.edu.in</p>
       <p><i class="fas fa-globe"></i> <a href="https://www.google.co.in/maps/place/Arunodaya+school/" target="_blank">View on Map</a></p>
     </div>
@@ -230,7 +332,7 @@
 
       expandedText.appendChild(heading);
 
-      const tagline = "where most of the students Achieved Number of their Dreamsand conquered the heights of success.";
+      const tagline = "where most of the students Achieved Number of their Dreams and conquered the heights of success.";
       const taglineContainer = document.createElement('div');
       taglineContainer.className = 'tagline';
 
