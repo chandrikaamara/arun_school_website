@@ -13,6 +13,7 @@
     .navbar {
       background-color: #0B2F9F;
     }
+    
     .navbar-brand {
       display: flex;
       align-items: center;
@@ -21,10 +22,12 @@
       color: white !important;
       font-weight: 600;
     }
+    
     .navbar-brand img {
-      height: 32px;
+      height: 38px;
       width: auto;
     }
+    
     .nav-link {
       color: white !important;
       font-weight: 500;
@@ -32,18 +35,47 @@
       align-items: center;
       gap: 5px;
       transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
     }
+    
     .nav-link:hover {
       color: #ffc107 !important;
     }
+    
     .btn-outline-light:hover {
       background-color: white;
       color: #0B2F9F;
     }
+    
     .btn-light:hover {
       background-color: #ffc107;
       color: black;
     }
+    
+    @media (max-width: 991.98px) {
+      .navbar-collapse {
+        margin-top: 1rem;
+      }
+    
+      .navbar-nav {
+        gap: 0.5rem;
+      }
+    
+      .navbar-nav .nav-item {
+        margin: 0 auto;
+      }
+    
+      .navbar .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+    
+      .navbar .d-flex {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+    
     .hero {
       background: linear-gradient(to right, #0815a6, #264dc4);
       color: white;
@@ -128,31 +160,32 @@
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="Pi7_logo.png" alt="Logo" />
-        Arunodaya School
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-5 me-auto mb-2 mb-lg-0">
-          <li class="nav-item me-5"><a class="nav-link" href="#about"><i class="fas fa-school"></i> About</a></li>
-          <li class="nav-item me-5"><a class="nav-link" href="#founder"><i class="fas fa-user-tie"></i> Founder</a></li>
-          <li class="nav-item me-5"><a class="nav-link" href="#faculty"><i class="fas fa-chalkboard-teacher"></i> Faculty</a></li>
-          <li class="nav-item me-5"><a class="nav-link" href="#events"><i class="fas fa-calendar-alt"></i> Events/Blogs</a></li>
-          <li class="nav-item me-5"><a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
-        </ul>
-        <div>
-          <a href="login.html" class="btn btn-outline-light me-2">Login</a>
-          <a href="register.html" class="btn btn-light">Sign Up</a>
-        </div>
+ <!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="Pi7_logo.png" alt="Logo" />
+      Arunodaya School
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <ul class="navbar-nav mb-2 mb-lg-0 mx-auto text-center text-lg-start">
+        <li class="nav-item"><a class="nav-link" href="#about"><i class="fas fa-school"></i> About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#founder"><i class="fas fa-user-tie"></i> Founder</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faculty"><i class="fas fa-chalkboard-teacher"></i> Faculty</a></li>
+        <li class="nav-item"><a class="nav-link" href="#events"><i class="fas fa-calendar-alt"></i> Events/Blogs</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+      </ul>
+      <div class="d-flex justify-content-center mt-3 mt-lg-0">
+        <a href="login.html" class="btn btn-outline-light me-2">Login</a>
+        <a href="register.html" class="btn btn-light">Sign Up</a>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+
 
   <!-- Hero Section with Intro Animation -->
   <div class="hero">
