@@ -6,6 +6,15 @@ body {
   padding: 0;
   background-color: #f4f4f9;
 }
+.card {
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 
 h2.text-center {
   color: white;
