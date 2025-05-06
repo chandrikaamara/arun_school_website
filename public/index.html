@@ -117,13 +117,14 @@
       localStorage.setItem('selectedRole', role);
 
       if (role === 'Student') {
-        // Redirect to Student Login Page (Student will login using name, roll number, class)
+        // Redirect to Student Login Page
         window.location.href = 'student-login.html';
       } else if (role === 'Others') {
+        // Redirect to general dashboard
         window.location.href = 'others-dashboard.html';
       } else {
-        // Redirect to Registration page for Organizer, Faculty
-        window.location.href = 'register.html'; 
+        // Organizer and Faculty login only
+        window.location.href = 'login.html';
       }
     }
   </script>
