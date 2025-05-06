@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - Arunodaya School Management</title>
+  <title>Login - Arun School</title>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -13,8 +13,8 @@
 
   <style>
     body {
-      background:
-        linear-gradient(to right, rgba(255, 255, 255, 0.65), rgba(11, 71, 192, 0.705)),
+      background: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.68), rgba(11, 71, 192, 0.705)),
         url('backgroundreggg.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Segoe UI', sans-serif;
@@ -30,16 +30,10 @@
       background-color: rgba(38, 105, 206, 0.751);
       padding: 2rem;
       border-radius: 15px;
-      max-width: 450px;
+      max-width: 420px;
       width: 100%;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
       backdrop-filter: blur(6px);
-    }
-
-    .logo {
-      width: 140px;
-      margin: 0 auto 1rem;
-      display: block;
     }
 
     .form-title {
@@ -54,10 +48,11 @@
       background-color: #e0eafc;
       border: 1px solid #c8dafc;
       color: #007BFF;
+      border-radius: 10px 0 0 10px;
     }
 
     .form-control {
-      border-radius: 10px;
+      border-radius: 0 10px 10px 0;
       border: 1px solid #ced4da;
       background-color: #f8f9fa;
     }
@@ -68,30 +63,39 @@
     }
 
     .btn-primary {
-      background-color: #0727c5;
+      background-color: #007BFF;
       border: none;
       padding: 0.75rem;
       border-radius: 10px;
       font-weight: 600;
+      width: 100%;
     }
 
     .btn-primary:hover {
-      background-color: #ffffff;
-      color: #0727c5;
+      background-color: #0056b3;
     }
 
-    .forgot-link {
-      color: #dc3c10;
-      font-size: 0.95rem;
-      text-align: right;
-      display: block;
-      margin-top: -0.5rem;
-      margin-bottom: 1.5rem;
-      text-decoration: none;
+    .form-footer {
+      text-align: center;
+      margin-top: 1rem;
     }
 
-    a {
-      text-decoration: none;
+    .form-footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .toggle-password {
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #007BFF;
+    }
+
+    .position-relative {
+      position: relative;
     }
 
     @media (max-width: 576px) {
@@ -104,32 +108,48 @@
 <body>
 
   <div class="form-wrapper">
-    <img src="Pi7_logo.png" alt="School Logo" class="logo" />
-    <h2 class="form-title">Login</h2>
-
-    <form onsubmit="event.preventDefault(); loginUser(email.value, password.value);">
-      <!-- Email -->
-      <div class="input-group mb-4">
-        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-        <input type="email" id="email" class="form-control" placeholder="Enter your email" required />
+    <h2 class="form-title"><i class="fas fa-user-circle me-2"></i>Login</h2>
+    <form onsubmit="event.preventDefault(); loginUser(document.getElementById('loginEmail').value, document.getElementById('loginPassword').value)">
+      <div class="mb-3">
+        <label for="loginEmail" class="form-label">Email address</label>
+        <div class="input-group">
+          <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+          <input type="email" class="form-control" id="loginEmail" placeholder="Enter email" required>
+        </div>
       </div>
 
-      <!-- Password -->
-      <div class="input-group mb-2">
-        <span class="input-group-text"><i class="fas fa-lock"></i></span>
-        <input type="password" id="password" class="form-control" placeholder="Enter your password" required />
+      <div class="mb-3">
+        <label for="loginPassword" class="form-label">Password</label>
+        <div class="input-group position-relative">
+          <span class="input-group-text"><i class="fas fa-lock"></i></span>
+          <input type="password" class="form-control" id="loginPassword" placeholder="Enter password" required>
+          <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+        </div>
       </div>
 
-      <!-- Forgot Password Link -->
-      <a href="forgetpassword.html" class="forgot-link">Forgot Password?</a>
-
-      <button type="submit" class="btn btn-primary w-100 mb-3">
+      <button type="submit" class="btn btn-primary mt-3">
         <i class="fas fa-sign-in-alt me-2"></i>Login
       </button>
+
+      <div class="form-footer mt-3">
+        <a href="forgetpassword.html">Forgot Password?</a>
+      </div>
     </form>
   </div>
 
-  <!-- Firebase Script -->
+  <!-- Password Toggle Script -->
+  <script>
+    function togglePassword() {
+      const passwordField = document.getElementById('loginPassword');
+      const icon = event.target;
+      const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordField.setAttribute('type', type);
+      icon.classList.toggle('fa-eye');
+      icon.classList.toggle('fa-eye-slash');
+    }
+  </script>
+
+  <!-- Firebase login logic -->
   <script type="module" src="app.js"></script>
 </body>
 </html>
