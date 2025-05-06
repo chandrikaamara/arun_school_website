@@ -1,16 +1,7 @@
 // Import Firebase modules (modular style)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc,
-} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -27,27 +18,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
-
-// ------------------ REGISTER FUNCTION ------------------ //
-function registerUser(name, email, password, role) {
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      return setDoc(doc(db, "users", user.uid), {
-        name,
-        email,
-        role,
-      });
-    })
-    .then(() => {
-      alert("Registration successful!");
-      window.location.href = "login.html";
-    })
-    .catch((error) => {
-      console.error("Registration Error:", error.message);
-      alert(error.message);
-    });
-}
 
 // ------------------ LOGIN FUNCTION ------------------ //
 function loginUser(email, password) {
@@ -80,6 +50,19 @@ function loginUser(email, password) {
     });
 }
 
+// ------------------ PASSWORD RESET FUNCTION ------------------ //
+function resetPassword(email) {
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      alert("Password reset email sent!");
+      window.location.href = "login.html"; // Redirect to login page after reset email is sent
+    })
+    .catch((error) => {
+      console.error("Password Reset Error:", error.message);
+      alert("Error: " + error.message);
+    });
+}
+
 // Make functions available in HTML
-window.registerUser = registerUser;
 window.loginUser = loginUser;
+window.resetPassword = resetPassword;
