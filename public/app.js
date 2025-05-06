@@ -1,7 +1,14 @@
-// Import Firebase modules (modular style)
+// Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -50,19 +57,5 @@ function loginUser(email, password) {
     });
 }
 
-// ------------------ PASSWORD RESET FUNCTION ------------------ //
-function resetPassword(email) {
-  sendPasswordResetEmail(auth, email)
-    .then(() => {
-      alert("Password reset email sent!");
-      window.location.href = "login.html"; // Redirect to login page after reset email is sent
-    })
-    .catch((error) => {
-      console.error("Password Reset Error:", error.message);
-      alert("Error: " + error.message);
-    });
-}
-
-// Make functions available in HTML
+// Expose loginUser function globally
 window.loginUser = loginUser;
-window.resetPassword = resetPassword;
