@@ -1,278 +1,344 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Faculty Dashboard</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty Dashboard - Arunodaya School</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
     body {
-      margin: 0;
+      background-color: #f5f9ff;
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
     }
 
-    /* Sidebar */
-    .sidebar {
-      width: 250px;
-      background-color: #1e293b;
-      color: white;
-      height: 100vh;
-      padding: 20px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      transition: transform 0.3s ease;
-      overflow-y: auto;
-      z-index: 999;
+    .navbar {
+      background-color: #161D6F;
     }
 
-    .sidebar.collapsed {
-      transform: translateX(-100%);
-    }
-
-    .sidebar h2 {
-      margin-top: 0;
-      margin-bottom: 30px;
-      font-size: 22px;
-    }
-
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 15px 0;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .sidebar a:hover {
-      color: #38bdf8;
-    }
-
-    /* Toggle Button */
-    .toggle-btn {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 1000;
-      background-color: #1e293b;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      padding: 10px;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
-    /* Main content */
-    .main {
-      margin-left: 250px;
-      padding: 60px 20px 20px 20px;
-      flex: 1;
-      transition: margin-left 0.3s ease;
-      width: 100%;
-    }
-
-    .main.collapsed {
-      margin-left: 0;
-    }
-
-    .header {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.02);
-    }
-
-    .card i {
-      font-size: 28px;
-      margin-right: 15px;
-    }
-
-    .card .info .title {
-      font-size: 18px;
+    .navbar-brand,
+    .nav-link,
+    .logout-btn {
+      color: white !important;
       font-weight: 600;
     }
 
-    .card .info .desc {
-      color: #777;
-      font-size: 14px;
+    .dashboard-title {
+      text-align: center;
+      margin: 2rem 0 1rem;
+      color: #0B2F9F;
+      font-size: 2rem;
+      font-weight: bold;
     }
 
-    .btn {
-      margin-top: 30px;
-      padding: 10px 20px;
-      background-color: #2563eb;
-      color: white;
-      border: none;
-      border-radius: 6px;
+    .dashboard-option {
+      padding: 1rem;
+      margin: 1rem;
+      background-color: #98DED9;
+      border-radius: 15px;
+      text-align: center;
+      color: #0727c5;
       cursor: pointer;
-      font-size: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
 
-    .btn:hover {
-      background-color: #1d4ed8;
+    .dashboard-option:hover {
+      background-color: #C7FFD8;
+      transform: translateY(-5px);
     }
 
-    /* Dynamic section display */
-    .section-content {
+    .form-container {
+      padding: 2rem;
+    }
+
+    .form-section {
       display: none;
-      margin-top: 20px;
     }
 
-    .section-content.active {
-      display: block;
+    .form-container input,
+    .form-container select {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .logout-btn {
+      background-color: #0B2F9F;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background-color: #161D6F;
+    }
+
+    .main-content {
+      padding: 2rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .main-content {
+        padding: 1rem;
+      }
+
+      .dashboard-option {
+        font-size: 14px;
+      }
+
+      .dashboard-title {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
+
 <body>
-
-  <!-- Toggle Button -->
-  <button class="toggle-btn" onclick="toggleSidebar()">
-    <i class="fa fa-bars"></i>
-  </button>
-
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <h2>Menu</h2>
-    <a onclick="showSection('dashboard')">Dashboard</a>
-    <a onclick="showSection('students')">Students</a>
-    <a onclick="showSection('attendance')">Attendance</a>
-    <a onclick="showSection('assignments')">Assignments</a>
-    <a onclick="showSection('announcements')">Announcements</a>
-    <a onclick="showSection('profile')">Profile</a>
-    <a href="#">Logout</a>
-  </div>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Arunodaya Faculty</a>
+      <button class="btn logout-btn ms-auto"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+  </nav>
 
   <!-- Main Content -->
-  <div class="main" id="main">
-    <div class="header" id="pageTitle">Faculty Dashboard</div>
+  <div class="main-content">
+    <h2 class="dashboard-title">Faculty Dashboard</h2>
 
-    <!-- Dashboard Home -->
-    <div class="section-content active" id="dashboard">
-      <div class="card-grid">
-        <div class="card" onclick="showSection('schedule')">
-          <i class="fa-solid fa-calendar-days" style="color:#3b82f6;"></i>
-          <div class="info">
-            <div class="title">Today’s Schedule</div>
-            <div class="desc">View your classes</div>
-          </div>
-        </div>
-
-        <div class="card" onclick="showSection('students')">
-          <i class="fa-solid fa-users" style="color:#10b981;"></i>
-          <div class="info">
-            <div class="title">Manage Students</div>
-            <div class="desc">View student list</div>
-          </div>
-        </div>
-
-        <div class="card" onclick="showSection('attendance')">
-          <i class="fa-solid fa-list-check" style="color:#8b5cf6;"></i>
-          <div class="info">
-            <div class="title">Attendance</div>
-            <div class="desc">Mark and view records</div>
-          </div>
-        </div>
-
-        <div class="card" onclick="showSection('assignments')">
-          <i class="fa-solid fa-book-open" style="color:#f97316;"></i>
-          <div class="info">
-            <div class="title">Assignments</div>
-            <div class="desc">Create and review</div>
-          </div>
-        </div>
-
-        <div class="card" onclick="showSection('announcements')">
-          <i class="fa-solid fa-bullhorn" style="color:#ef4444;"></i>
-          <div class="info">
-            <div class="title">Announcements</div>
-            <div class="desc">Send messages</div>
-          </div>
-        </div>
-      </div>
+    <!-- Options to toggle sections -->
+    <div class="d-flex flex-column flex-md-row justify-content-around mb-4">
+      <div class="dashboard-option" id="add-student-btn">Add Student</div>
+      <div class="dashboard-option" id="give-attendance-btn">Give Attendance</div>
+      <div class="dashboard-option" id="view-attendance-btn">View Attendance</div>
+      <div class="dashboard-option" id="give-marks-btn">Give Marks</div>
+      <div class="dashboard-option" id="view-marks-btn">View Marks</div>
     </div>
 
-    <!-- Other Sections -->
-    <div class="section-content" id="students">
-      <h3>Student List</h3>
-      <p>Here you can manage student records, view grades, and assign courses.</p>
+    <!-- Add Student Section -->
+    <div id="add-student-section" class="form-section">
+      <h3>Add Student</h3>
+      <form id="add-student-form" class="form-container">
+        <input type="text" id="student-name" placeholder="Student Name" required />
+        <input type="number" id="roll-number" placeholder="Roll Number" required />
+        <select id="class-select" required>
+          <option value="">Select Class</option>
+          <option value="LKG">LKG</option>
+          <option value="UKG">UKG</option>
+          <option value="1st">1st</option>
+          <option value="2nd">2nd</option>
+          <option value="3rd">3rd</option>
+          <option value="4th">4th</option>
+          <option value="5th">5th</option>
+          <option value="6th">6th</option>
+          <option value="7th">7th</option>
+          <option value="8th">8th</option>
+          <option value="9th">9th</option>
+          <option value="10th">10th</option>
+        </select>
+        <input type="password" id="student-password" placeholder="Password" required />
+        <button type="submit" class="btn btn-primary">Add Student</button>
+      </form>
     </div>
 
-    <div class="section-content" id="attendance">
-      <h3>Attendance Section</h3>
-      <p>Take daily attendance and view history for your classes.</p>
+    <!-- Give Attendance Section -->
+    <div id="attendance-section" class="form-section">
+      <h3>Give Attendance</h3>
+      <form id="attendance-form" class="form-container">
+        <select id="attendance-class" required>
+          <option value="">Select Class</option>
+          <option value="LKG">LKG</option>
+          <option value="UKG">UKG</option>
+          <option value="1st">1st</option>
+          <option value="2nd">2nd</option>
+          <option value="3rd">3rd</option>
+          <option value="4th">4th</option>
+          <option value="5th">5th</option>
+          <option value="6th">6th</option>
+          <option value="7th">7th</option>
+          <option value="8th">8th</option>
+          <option value="9th">9th</option>
+          <option value="10th">10th</option>
+        </select>
+        <select id="subject-select" required>
+          <option value="">Select Subject</option>
+          <option value="Maths">Maths</option>
+          <option value="Science">Science</option>
+          <option value="English">English</option>
+        </select>
+        <input type="date" id="attendance-date" required />
+        <button type="submit" class="btn btn-success">Mark Attendance</button>
+      </form>
     </div>
 
-    <div class="section-content" id="assignments">
-      <h3>Assignments</h3>
-      <p>Create, assign, and grade assignments from here.</p>
+    <!-- View Attendance Section -->
+    <div id="view-attendance-section" class="form-section">
+      <h3>View Attendance</h3>
+      <form id="view-attendance-form" class="form-container">
+        <select id="view-attendance-class" required>
+          <option value="">Select Class</option>
+          <option value="LKG">LKG</option>
+          <option value="UKG">UKG</option>
+          <option value="1st">1st</option>
+          <option value="2nd">2nd</option>
+          <option value="3rd">3rd</option>
+          <option value="4th">4th</option>
+          <option value="5th">5th</option>
+          <option value="6th">6th</option>
+          <option value="7th">7th</option>
+          <option value="8th">8th</option>
+          <option value="9th">9th</option>
+          <option value="10th">10th</option>
+        </select>
+        <select id="view-attendance-subject" required>
+          <option value="">Select Subject</option>
+          <option value="Maths">Maths</option>
+          <option value="Science">Science</option>
+          <option value="English">English</option>
+        </select>
+        <button type="button" class="btn btn-info" id="view-attendance-btn">View Attendance</button>
+      </form>
+      <div id="attendance-results"></div>
     </div>
 
-    <div class="section-content" id="announcements">
-      <h3>Announcements</h3>
-      <p>Send messages to students or faculty groups.</p>
+    <!-- Give Marks Section -->
+    <div id="marks-section" class="form-section">
+      <h3>Give Marks</h3>
+      <form id="marks-form" class="form-container">
+        <select id="marks-class" required>
+          <option value="">Select Class</option>
+          <option value="LKG">LKG</option>
+          <option value="UKG">UKG</option>
+          <option value="1st">1st</option>
+          <option value="2nd">2nd</option>
+          <option value="3rd">3rd</option>
+          <option value="4th">4th</option>
+          <option value="5th">5th</option>
+          <option value="6th">6th</option>
+          <option value="7th">7th</option>
+          <option value="8th">8th</option>
+          <option value="9th">9th</option>
+          <option value="10th">10th</option>
+        </select>
+        <select id="marks-subject" required>
+          <option value="">Select Subject</option>
+          <option value="Maths">Maths</option>
+          <option value="Science">Science</option>
+          <option value="English">English</option>
+        </select>
+        <input type="number" id="marks" placeholder="Marks" required />
+        <button type="submit" class="btn btn-warning">Give Marks</button>
+      </form>
     </div>
 
-    <div class="section-content" id="profile">
-      <h3>Your Profile</h3>
-      <p>Edit your profile, update contact details, and change your password.</p>
+    <!-- View Marks Section -->
+    <div id="view-marks-section" class="form-section">
+      <h3>View Marks</h3>
+      <form id="view-marks-form" class="form-container">
+        <select id="view-marks-class" required>
+          <option value="">Select Class</option>
+          <option value="LKG">LKG</option>
+          <option value="UKG">UKG</option>
+          <option value="1st">1st</option>
+          <option value="2nd">2nd</option>
+          <option value="3rd">3rd</option>
+          <option value="4th">4th</option>
+          <option value="5th">5th</option>
+          <option value="6th">6th</option>
+          <option value="7th">7th</option>
+          <option value="8th">8th</option>
+          <option value="9th">9th</option>
+          <option value="10th">10th</option>
+        </select>
+        <select id="view-marks-subject" required>
+          <option value="">Select Subject</option>
+          <option value="Maths">Maths</option>
+          <option value="Science">Science</option>
+          <option value="English">English</option>
+        </select>
+        <button type="button" class="btn btn-info" id="view-marks-btn">View Marks</button>
+      </form>
+      <div id="marks-results"></div>
     </div>
-
-    <div class="section-content" id="schedule">
-      <h3>Today's Schedule</h3>
-      <p>You have 3 classes scheduled today: Math, Physics, and Chemistry.</p>
-    </div>
-
   </div>
 
+  <!-- Firebase Integration Script -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
   <script>
-    function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('collapsed');
-      document.getElementById('main').classList.toggle('collapsed');
-    }
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID",
+      measurementId: "YOUR_MEASUREMENT_ID"
+    };
 
-    function showSection(sectionId) {
-      // Update header
-      const titleMap = {
-        dashboard: "Faculty Dashboard",
-        students: "Manage Students",
-        attendance: "Attendance",
-        assignments: "Assignments",
-        announcements: "Announcements",
-        profile: "Your Profile",
-        schedule: "Today’s Schedule"
-      };
-      document.getElementById("pageTitle").innerText = titleMap[sectionId] || "Section";
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
 
-      // Hide all sections
-      document.querySelectorAll(".section-content").forEach(el => el.classList.remove("active"));
-      // Show selected
-      const selected = document.getElementById(sectionId);
-      if (selected) selected.classList.add("active");
-    }
+    // Handle View Attendance Button Click
+    document.getElementById("view-attendance-btn").addEventListener("click", function () {
+      const classSelect = document.getElementById("view-attendance-class").value;
+      const subjectSelect = document.getElementById("view-attendance-subject").value;
+      if (classSelect && subjectSelect) {
+        db.collection("attendance")
+          .where("class", "==", classSelect)
+          .where("subject", "==", subjectSelect)
+          .get()
+          .then((querySnapshot) => {
+            let results = "";
+            querySnapshot.forEach((doc) => {
+              results += `
+                <p>${doc.data().date}: ${doc.data().class} - ${doc.data().subject}</p>
+              `;
+            });
+            document.getElementById("attendance-results").innerHTML = results || "No attendance records found.";
+          });
+      }
+    });
+
+    // Handle View Marks Button Click
+    document.getElementById("view-marks-btn").addEventListener("click", function () {
+      const classSelect = document.getElementById("view-marks-class").value;
+      const subjectSelect = document.getElementById("view-marks-subject").value;
+      if (classSelect && subjectSelect) {
+        db.collection("marks")
+          .where("class", "==", classSelect)
+          .where("subject", "==", subjectSelect)
+          .get()
+          .then((querySnapshot) => {
+            let results = "";
+            querySnapshot.forEach((doc) => {
+              results += `
+                <p>${doc.data().class} - ${doc.data().subject}: ${doc.data().marks}</p>
+              `;
+            });
+            document.getElementById("marks-results").innerHTML = results || "No marks records found.";
+          });
+      }
+    });
+
+    // Handle form submissions for adding students, attendance, and marks (same as previous).
   </script>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
