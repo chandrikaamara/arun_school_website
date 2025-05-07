@@ -104,14 +104,15 @@
     </div>
   </nav>
 
-  <!-- Sidebar -->
+  <!-- Sidebar and Main Content -->
   <div class="d-flex">
     <div class="sidebar position-fixed">
       <h5 class="mb-4">Organizer Panel</h5>
-      <a href="#"><i class="fas fa-user-graduate me-2"></i>Manage Students</a>
-      <a href="#"><i class="fas fa-chalkboard-teacher me-2"></i>Manage Faculty</a>
-      <a href="#"><i class="fas fa-clipboard-check me-2"></i>Attendance</a>
-      <a href="#"><i class="fas fa-chart-line me-2"></i>Marks</a>
+      <a href="organizer-dashboard.html"><i class="fas fa-layer-group me-2"></i>Dashboard</a>
+      <a href="manage-students.html"><i class="fas fa-user-graduate me-2"></i>Manage Students</a>
+      <a href="manage-faculty.html"><i class="fas fa-chalkboard-teacher me-2"></i>Manage Faculty</a>
+      <a href="attendance-overview.html"><i class="fas fa-clipboard-check me-2"></i>Attendance</a>
+      <a href="marks-overview.html"><i class="fas fa-chart-line me-2"></i>Marks</a>
     </div>
 
     <!-- Main Content -->
@@ -137,8 +138,8 @@
   <!-- JS -->
   <script>
     function goToClass(className) {
-      // Redirect to class-details page with class name in query
-      window.location.href = `class-details.html?class=${encodeURIComponent(className)}`;
+      localStorage.setItem("selectedClass", className);
+      window.location.href = `class-details.html`;
     }
   </script>
 </body>
