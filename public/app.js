@@ -6,8 +6,11 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 import {
   getFirestore,
+  collection,
   doc,
   getDoc,
+  addDoc,
+  getDocs,
 } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
 // Firebase configuration
@@ -59,3 +62,77 @@ function loginUser(email, password) {
 
 // Expose loginUser function globally
 window.loginUser = loginUser;
+
+// ------------------ ADD STUDENT FUNCTION ------------------ //
+document.getElementById("add-student-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const studentName = document.getElementById("student-name").value;
+  const studentRoll = document.getElementById("student-roll").value;
+  const studentClass = document.getElementById("student-class").value;
+  const studentPassword = document.getElementById("student-password").value;
+
+  db.collection("students").add({
+    name: studentName,
+    roll: studentRoll,
+    class: studentClass,
+    password: studentPassword,
+  }).then(() => {
+    document.getElementById("add-student-message").textContent = "Student added successfully!";
+    document.getElementById("add-student-form").reset();
+  }).catch((error) => {
+    document.getElementById("add-student-message").textContent = "Error adding student: " + error.message;
+  });
+});
+
+// ------------------ MARK ATTENDANCE FUNCTION ------------------ //
+document.getElementById("mark-attendance-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const attendanceClass = document.getElementById("attendance-class").value;
+  const attendanceSubject = document.getElementById("attendance-subject").value;
+  const attendanceDate = document.getElementById("attendance-date").value;
+
+  db.collection("attendance").add({
+    class: attendanceClass,
+    subject: attendanceSubject,
+    date: attendanceDate,
+    status: "present",  // Modify this logic based on actual student attendance marking
+  }).then(() => {
+    document.getElementById("mark-attendance-message").textContent = "Attendance marked successfully!";
+    document.getElementById("mark-attendance-form").reset();
+  }).catch((error) => {
+    document.getElementById("mark-attendance-message").textContent = "Error marking attendance: " + error.message;
+  });
+});
+
+// ------------------ VIEW ATTENDANCE FUNCTION ------------------ //
+function fetchAttendance() {
+  db.collection("attendance").get().then((snapshot) => {
+    const attendanceData = snapshot.docs.map(doc => doc.data());
+    const attendanceList = document.getElementById("attendance-list");
+    attendanceList.innerHTML = "";
+    attendanceData.forEach(attendance => {
+      attendanceList.innerHTML += `
+        <p>Class: ${attendance.class}, Subject: ${attendance.subject}, Date: ${attendance.date}, Status: ${attendance.status}</p>
+      `;
+    });
+  }).catch((error) => {
+    console.log("Error fetching attendance:", error);
+  });
+}
+
+// ------------------ VIEW MARKS FUNCTION ------------------ //
+function fetchMarks() {
+  db.collection("marks").get().then((snapshot) => {
+    const marksData = snapshot.docs.map(doc => doc.data());
+    const marksList = document.getElementById("marks-list");
+    marksList.innerHTML = "";
+    marksData.forEach(mark => {
+      marksList.innerHTML += `
+        <p>Class: ${mark.class}, Subject: ${mark.subject}, Marks: ${mark.marks}</p>
+      `;
+    });
+  }).catch((error) => {
+    console.log("Error fetching marks:", error);
+  });
+}
+
