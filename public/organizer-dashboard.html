@@ -1,71 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Organizer Dashboard - Arun School</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Organizer Dashboard - Arunodaya School</title>
+
+  <!-- Bootstrap & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    body {
+      background-color: #f5f9ff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .navbar {
+      background-color: #161D6F;
+    }
+
+    .navbar-brand, .nav-link, .logout-btn {
+      color: white !important;
+      font-weight: 600;
+    }
+
+    .dashboard-title {
+      text-align: center;
+      margin: 2rem 0 1rem;
+      color: #0B2F9F;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .class-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
+    }
+
+    .class-card {
+      background-color: #98DED9;
+      border-radius: 15px;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-weight: 600;
+      color: #0727c5;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .class-card:hover {
+      background-color: #C7FFD8;
+      transform: translateY(-5px);
+    }
+
+    .sidebar {
+      background-color: #0B2F9F;
+      padding: 1rem;
+      height: 100vh;
+      color: white;
+    }
+
+    .sidebar a {
+      color: white;
+      display: block;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #98DED9;
+      color: #0B2F9F;
+    }
+
+    .main-content {
+      margin-left: 230px;
+      padding: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+        padding: 1rem;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="attendance.html"><i class="fas fa-user-check"></i> Manage Attendance</a></li>
-        <li><a href="marks.html"><i class="fas fa-chart-bar"></i> Manage Marks</a></li>
-        <li><a href="students.html"><i class="fas fa-users"></i> Manage Students</a></li>
-        <li><a href="faculty.html"><i class="fas fa-chalkboard-teacher"></i> Manage Faculty</a></li>
-        <li><a href="index.html" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <main>
-    <section class="welcome-section">
-      <h1>Welcome, Organizer!</h1>
-      <p>As an Organizer, you have full access to manage the school's attendance, marks, students, and faculty.</p>
-    </section>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><i class="fas fa-school me-2"></i>Arunodaya Organizer</a>
+      <button class="btn btn-outline-light logout-btn ms-auto"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+  </nav>
 
-    <section class="dashboard-actions">
-      <div class="card">
-        <h3>Manage Attendance</h3>
-        <p>Click here to view and manage student attendance.</p>
-        <a href="attendance.html" class="btn">Manage Attendance</a>
+  <!-- Sidebar -->
+  <div class="d-flex">
+    <div class="sidebar position-fixed">
+      <h5 class="mb-4">Organizer Panel</h5>
+      <a href="#"><i class="fas fa-user-graduate me-2"></i>Manage Students</a>
+      <a href="#"><i class="fas fa-chalkboard-teacher me-2"></i>Manage Faculty</a>
+      <a href="#"><i class="fas fa-clipboard-check me-2"></i>Attendance</a>
+      <a href="#"><i class="fas fa-chart-line me-2"></i>Marks</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content w-100">
+      <h2 class="dashboard-title">Select a Class</h2>
+      <div class="class-grid">
+        <div class="class-card" onclick="goToClass('LKG')">LKG</div>
+        <div class="class-card" onclick="goToClass('UKG')">UKG</div>
+        <div class="class-card" onclick="goToClass('1st')">1st</div>
+        <div class="class-card" onclick="goToClass('2nd')">2nd</div>
+        <div class="class-card" onclick="goToClass('3rd')">3rd</div>
+        <div class="class-card" onclick="goToClass('4th')">4th</div>
+        <div class="class-card" onclick="goToClass('5th')">5th</div>
+        <div class="class-card" onclick="goToClass('6th')">6th</div>
+        <div class="class-card" onclick="goToClass('7th')">7th</div>
+        <div class="class-card" onclick="goToClass('8th')">8th</div>
+        <div class="class-card" onclick="goToClass('9th')">9th</div>
+        <div class="class-card" onclick="goToClass('10th')">10th</div>
       </div>
+    </div>
+  </div>
 
-      <div class="card">
-        <h3>Manage Marks</h3>
-        <p>Click here to view and manage students' marks.</p>
-        <a href="marks.html" class="btn">Manage Marks</a>
-      </div>
-
-      <div class="card">
-        <h3>Manage Students</h3>
-        <p>Click here to manage student records, add or remove students.</p>
-        <a href="students.html" class="btn">Manage Students</a>
-      </div>
-
-      <div class="card">
-        <h3>Manage Faculty</h3>
-        <p>Click here to manage faculty information and assignments.</p>
-        <a href="faculty.html" class="btn">Manage Faculty</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Arun School</p>
-  </footer>
-
+  <!-- JS -->
   <script>
-    // Logout function to clear authentication
-    function logout() {
-      firebase.auth().signOut().then(() => {
-        window.location.href = 'index.html';  // Redirect to home after logout
-      }).catch((error) => {
-        console.error("Error logging out: ", error);
-      });
+    function goToClass(className) {
+      // Redirect to class-details page with class name in query
+      window.location.href = `class-details.html?class=${encodeURIComponent(className)}`;
     }
   </script>
 </body>
