@@ -63,6 +63,41 @@ function loginUser(email, password) {
 // Expose loginUser function globally
 window.loginUser = loginUser;
 
+// ------------------ BUTTON CLICK EVENTS ------------------ //
+document.getElementById("add-student-btn").addEventListener("click", () => {
+  toggleVisibility("add-student-form");
+});
+
+document.getElementById("mark-attendance-btn").addEventListener("click", () => {
+  toggleVisibility("mark-attendance-form");
+});
+
+document.getElementById("view-attendance-btn").addEventListener("click", () => {
+  toggleVisibility("view-attendance-form");
+  fetchAttendance();  // Fetch attendance data when view attendance is clicked
+});
+
+document.getElementById("add-marks-btn").addEventListener("click", () => {
+  toggleVisibility("add-marks-form");
+});
+
+document.getElementById("view-marks-btn").addEventListener("click", () => {
+  toggleVisibility("view-marks-form");
+  fetchMarks();  // Fetch marks data when view marks is clicked
+});
+
+// ------------------ TOGGLE VISIBILITY FUNCTION ------------------ //
+function toggleVisibility(formId) {
+  const forms = document.querySelectorAll(".form-container");
+  forms.forEach((form) => {
+    if (form.id === formId) {
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    } else {
+      form.style.display = "none";
+    }
+  });
+}
+
 // ------------------ ADD STUDENT FUNCTION ------------------ //
 document.getElementById("add-student-form").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -104,7 +139,7 @@ document.getElementById("mark-attendance-form").addEventListener("submit", funct
   });
 });
 
-// ------------------ VIEW ATTENDANCE FUNCTION ------------------ //
+// ------------------ FETCH ATTENDANCE FUNCTION ------------------ //
 function fetchAttendance() {
   db.collection("attendance").get().then((snapshot) => {
     const attendanceData = snapshot.docs.map(doc => doc.data());
@@ -120,7 +155,7 @@ function fetchAttendance() {
   });
 }
 
-// ------------------ VIEW MARKS FUNCTION ------------------ //
+// ------------------ FETCH MARKS FUNCTION ------------------ //
 function fetchMarks() {
   db.collection("marks").get().then((snapshot) => {
     const marksData = snapshot.docs.map(doc => doc.data());
@@ -135,4 +170,3 @@ function fetchMarks() {
     console.log("Error fetching marks:", error);
   });
 }
-
