@@ -11,12 +11,13 @@
 
   <style>
     body {
-      background-color: #f5f9ff;
+      background-color: #f4f9ff;
       font-family: 'Segoe UI', sans-serif;
     }
 
     .navbar {
       background-color: #161D6F;
+      padding: 1rem 2rem;
     }
 
     .navbar-brand {
@@ -26,30 +27,37 @@
 
     .student-id {
       color: white;
-      margin-left: auto;
       font-weight: 500;
+      margin-left: auto;
     }
 
     .dashboard-title {
       text-align: center;
       margin: 2rem 0 1rem;
       color: #0B2F9F;
-      font-size: 2rem;
-      font-weight: bold;
+      font-size: 2.2rem;
+      font-weight: 700;
     }
 
     .section-card {
       background-color: #98DED9;
-      border-radius: 15px;
-      padding: 1.5rem;
+      border-radius: 12px;
+      padding: 2rem;
       margin-bottom: 1.5rem;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .section-card:hover {
+      transform: translateY(-5px);
+      background-color: #C7FFD8;
     }
 
     .section-card h4 {
       color: #0727c5;
       font-weight: 600;
       margin-bottom: 1rem;
+      font-size: 1.5rem;
     }
 
     .profile-photo {
@@ -64,14 +72,46 @@
       background-color: #0B2F9F;
       color: white;
       border: none;
-      padding: 0.5rem 1rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 8px;
       font-weight: 500;
-      margin-top: 1rem;
+      margin-top: 1.2rem;
+      transition: background-color 0.3s ease;
     }
 
     .contact-btn:hover {
       background-color: #0727c5;
+    }
+
+    .form-control {
+      border-radius: 8px;
+    }
+
+    .text-muted {
+      font-size: 0.9rem;
+    }
+
+    .grievance-form {
+      margin-top: 1rem;
+    }
+
+    .grievance-textarea {
+      height: 150px;
+    }
+
+    .grievance-submit-btn {
+      background-color: #161D6F;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      margin-top: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .grievance-submit-btn:hover {
+      background-color: #0B2F9F;
     }
   </style>
 </head>
@@ -87,7 +127,7 @@
   <div class="container mt-4">
     <h2 class="dashboard-title">Welcome, <span id="student-name"></span></h2>
 
-    <!-- Personal Info -->
+    <!-- Personal Info Section -->
     <div class="section-card">
       <h4><i class="fas fa-user-circle me-2"></i>Personal Information</h4>
       <div class="d-flex align-items-center gap-3">
@@ -102,115 +142,91 @@
       <input type="file" accept="image/*" class="form-control mt-3" id="upload-photo">
     </div>
 
-    <!-- Academic Performance -->
+    <!-- Academic Performance Section -->
     <div class="section-card">
       <h4><i class="fas fa-chart-line me-2"></i>Academic Performance</h4>
       <p>Click below to view marks.</p>
       <a href="marks.html" class="contact-btn">View Marks</a>
     </div>
 
-    <!-- Attendance -->
+    <!-- Attendance Section -->
     <div class="section-card">
       <h4><i class="fas fa-calendar-check me-2"></i>Attendance</h4>
       <p>Click below to view your attendance.</p>
       <a href="attendance.html" class="contact-btn">View Attendance</a>
     </div>
 
-    <!-- Contact Class Teacher -->
+    <!-- Contact Class Teacher Section -->
     <div class="section-card">
       <h4><i class="fas fa-user-tie me-2"></i>Contact Class Teacher</h4>
       <p>If you have questions, contact your class teacher.</p>
       <a href="#" class="contact-btn" id="teacher-contact-btn"><i class="fas fa-envelope me-1"></i>Email Teacher</a>
     </div>
 
-    <!-- Grievance Cell -->
+    <!-- Grievance Cell Section -->
     <div class="section-card">
       <h4><i class="fas fa-comment-dots me-2"></i>Grievance Cell</h4>
       <p>If you face any inconvenience, contact the Organizer directly.</p>
-      <textarea class="form-control mb-2" id="grievance-message" rows="4" placeholder="Write your grievance here..."></textarea>
-      <button class="contact-btn" id="submit-grievance">
-        <i class="fas fa-paper-plane me-1"></i>Submit Grievance
-      </button>
+      <form class="grievance-form">
+        <textarea class="form-control grievance-textarea" id="grievance-text" placeholder="Describe your issue..." required></textarea>
+        <button type="submit" class="grievance-submit-btn"><i class="fas fa-paper-plane me-1"></i>Submit Grievance</button>
+      </form>
     </div>
   </div>
 
   <!-- Firebase & JS -->
   <script src="/__/firebase/9.22.2/firebase-app.js"></script>
-  <script src="/__/firebase/9.22.2/firebase-auth.js"></script>
   <script src="/__/firebase/9.22.2/firebase-firestore.js"></script>
-  <script src="/__/firebase/9.22.2/firebase-storage.js"></script>
   <script src="/__/firebase/init.js"></script>
-
   <script>
-    const auth = firebase.auth();
+    // Connect Firestore and load all data here dynamically
     const db = firebase.firestore();
-    const storage = firebase.storage();
 
-    auth.onAuthStateChanged(user => {
+    // Firebase logic to fetch student data
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
         const studentId = user.uid;
         db.collection("students").doc(studentId).get().then(doc => {
           if (doc.exists) {
             const data = doc.data();
-            document.getElementById("student-id").textContent = data.id || studentId;
-            document.getElementById("student-name").textContent = data.name || "";
-            document.getElementById("personal-name").textContent = data.name || "";
-            document.getElementById("personal-class").textContent = data.class || "";
-            document.getElementById("personal-email").textContent = data.email || "";
-            document.getElementById("personal-phone").textContent = data.phone || "";
-            document.getElementById("teacher-contact-btn").href = `mailto:${data.teacherEmail || ''}`;
+            document.getElementById("student-id").textContent = data.id;
+            document.getElementById("student-name").textContent = data.name;
+            document.getElementById("personal-name").textContent = data.name;
+            document.getElementById("personal-class").textContent = data.class;
+            document.getElementById("personal-email").textContent = data.email;
+            document.getElementById("personal-phone").textContent = data.phone;
+            document.getElementById("teacher-contact-btn").href = `mailto:${data.teacherEmail}`;
             document.getElementById("student-photo").src = data.photoURL || "default-photo.jpg";
           }
         });
-      } else {
-        window.location.href = "login.html"; // redirect to login if not logged in
       }
     });
 
-    // Upload photo to Firebase Storage and update URL in Firestore
+    // Upload photo (preview functionality)
     document.getElementById("upload-photo").addEventListener("change", function (e) {
-      const file = e.target.files[0];
-      const user = auth.currentUser;
-      if (file && user) {
-        const storageRef = storage.ref(`studentPhotos/${user.uid}`);
-        storageRef.put(file).then(() => {
-          return storageRef.getDownloadURL();
-        }).then(url => {
-          document.getElementById("student-photo").src = url;
-          return db.collection("students").doc(user.uid).update({ photoURL: url });
-        }).catch(err => {
-          console.error("Error uploading photo:", err);
-          alert("Failed to upload photo. Try again.");
+      const reader = new FileReader();
+      reader.onload = function () {
+        document.getElementById("student-photo").src = reader.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    });
+
+    // Handle grievance submission
+    document.querySelector('.grievance-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const grievanceText = document.getElementById('grievance-text').value;
+      if (grievanceText) {
+        db.collection("grievances").add({
+          studentId: firebase.auth().currentUser.uid,
+          text: grievanceText,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        }).then(() => {
+          alert("Grievance submitted successfully!");
+          document.getElementById('grievance-text').value = '';
+        }).catch((error) => {
+          alert("Error submitting grievance: " + error.message);
         });
       }
-    });
-
-    // Submit Grievance to Firestore
-    document.getElementById("submit-grievance").addEventListener("click", function () {
-      const message = document.getElementById("grievance-message").value.trim();
-      const user = auth.currentUser;
-
-      if (!user) {
-        alert("Please log in to submit a grievance.");
-        return;
-      }
-
-      if (!message) {
-        alert("Please enter your grievance message.");
-        return;
-      }
-
-      db.collection("grievances").add({
-        studentId: user.uid,
-        message: message,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      }).then(() => {
-        alert("Grievance submitted successfully!");
-        document.getElementById("grievance-message").value = "";
-      }).catch((error) => {
-        console.error("Error submitting grievance:", error);
-        alert("Error submitting grievance. Try again.");
-      });
     });
   </script>
 </body>
