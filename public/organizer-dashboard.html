@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Dashboard - Arunodaya School</title>
+  <title>Organizer Dashboard - Arunodaya School</title>
 
   <!-- Bootstrap & Font Awesome -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
@@ -19,7 +19,7 @@
       background-color: #161D6F;
     }
 
-    .navbar-brand, .logout-btn {
+    .navbar-brand, .nav-link, .logout-btn {
       color: white !important;
       font-weight: 600;
     }
@@ -32,65 +32,65 @@
       font-weight: bold;
     }
 
-    .student-info {
-      text-align: center;
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-    }
-
-    .dashboard-sections {
+    .class-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 0 2rem 3rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem;
     }
 
-    .dashboard-card {
-      background-color: #C7FFD8;
+    .class-card {
+      background-color: #98DED9;
       border-radius: 15px;
-      padding: 2rem 1.5rem;
+      padding: 2rem 1rem;
       text-align: center;
       font-weight: 600;
       color: #0727c5;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
       transition: all 0.3s ease;
       cursor: pointer;
     }
 
-    .dashboard-card:hover {
-      background-color: #98DED9;
+    .class-card:hover {
+      background-color: #C7FFD8;
       transform: translateY(-5px);
     }
 
-    .photo-upload {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .photo-upload img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #0B2F9F;
-      margin-bottom: 1rem;
-    }
-
-    .photo-upload input {
-      display: none;
-    }
-
-    .upload-btn {
+    .sidebar {
       background-color: #0B2F9F;
+      padding: 1rem;
+      height: 100vh;
       color: white;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
     }
 
-    .upload-btn:hover {
-      background-color: #0727c5;
+    .sidebar a {
+      color: white;
+      display: block;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      background-color: #98DED9;
+      color: #0B2F9F;
+    }
+
+    .main-content {
+      margin-left: 230px;
+      padding: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+        padding: 1rem;
+      }
+      .sidebar {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -99,35 +99,48 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><i class="fas fa-user-graduate me-2"></i>Student Dashboard</a>
-      <button class="btn btn-outline-light logout-btn ms-auto"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      <a class="navbar-brand" href="#"><i class="fas fa-school me-2"></i>Arunodaya Organizer</a>
+      <button class="btn btn-outline-light logout-btn ms-auto" onclick="location.href='index.html'"><i class="fas fa-sign-out-alt"></i> Logout</button>
     </div>
   </nav>
 
-  <!-- Main Content -->
-  <div class="container mt-4">
-    <h2 class="dashboard-title">Welcome, <span id="student-name"></span></h2>
-    <p class="student-info">ID: <span id="student-id"></span> | Class: <span id="student-class"></span></p>
-
-    <!-- Upload Photo Section -->
-    <div class="photo-upload">
-      <img id="student-photo" src="default-profile.png" alt="Profile Photo">
-      <div>
-        <label for="upload-photo" class="upload-btn"><i class="fas fa-upload me-1"></i>Upload Photo</label>
-        <input type="file" id="upload-photo" accept="image/*">
-      </div>
+  <!-- Sidebar and Main Content -->
+  <div class="d-flex">
+    <div class="sidebar position-fixed">
+      <h5 class="mb-4">Organizer Panel</h5>
+      <a href="organizer-dashboard.html"><i class="fas fa-layer-group me-2"></i>Dashboard</a>
+      <a href="manage-students.html"><i class="fas fa-user-graduate me-2"></i>Manage Students</a>
+      <a href="manage-faculty.html"><i class="fas fa-chalkboard-teacher me-2"></i>Manage Faculty</a>
+      <a href="attendance-overview.html"><i class="fas fa-clipboard-check me-2"></i>Attendance</a>
+      <a href="marks-overview.html"><i class="fas fa-chart-line me-2"></i>Marks</a>
     </div>
 
-    <!-- Dashboard Options -->
-    <div class="dashboard-sections mt-5">
-      <div class="dashboard-card" onclick="location.href='attendance.html'">
-        <i class="fas fa-clipboard-check fa-2x mb-2"></i><br> View Attendance
-      </div>
-      <div class="dashboard-card" onclick="location.href='marks.html'">
-        <i class="fas fa-chart-line fa-2x mb-2"></i><br> View Marks
+    <!-- Main Content -->
+    <div class="main-content w-100">
+      <h2 class="dashboard-title">Select a Class</h2>
+      <div class="class-grid">
+        <div class="class-card" onclick="goToClass('LKG')">LKG</div>
+        <div class="class-card" onclick="goToClass('UKG')">UKG</div>
+        <div class="class-card" onclick="goToClass('1st')">1st</div>
+        <div class="class-card" onclick="goToClass('2nd')">2nd</div>
+        <div class="class-card" onclick="goToClass('3rd')">3rd</div>
+        <div class="class-card" onclick="goToClass('4th')">4th</div>
+        <div class="class-card" onclick="goToClass('5th')">5th</div>
+        <div class="class-card" onclick="goToClass('6th')">6th</div>
+        <div class="class-card" onclick="goToClass('7th')">7th</div>
+        <div class="class-card" onclick="goToClass('8th')">8th</div>
+        <div class="class-card" onclick="goToClass('9th')">9th</div>
+        <div class="class-card" onclick="goToClass('10th')">10th</div>
       </div>
     </div>
   </div>
 
+  <!-- JS -->
+  <script>
+    function goToClass(className) {
+      localStorage.setItem("selectedClass", className);
+      window.location.href = `class-details.html`;
+    }
+  </script>
 </body>
 </html>
